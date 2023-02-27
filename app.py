@@ -3,18 +3,22 @@ from flask import url_for #Used for testing
 from flask import request #used to manage http requests
 from flask import render_template #used to render html templates
 from markupsafe import Markup #not used yet
-
-app = Flask(__name__)
 from markupsafe import escape
 
-def static():
+app = Flask(__name__)
+app.run(debug=True) #debug mode
+
+
+def setup():
     url_for('static', filename='style.css')
 
-app.before_first_request(static) # calls function before first request
+app.before_first_request(setup) # calls function before first request
 
 @app.route('/')
+@app.route('/index')
 def index():
-    return 'Index Page'
+    items = [{"href": "http://127.0.0.1:5000/login", "caption":"login"}]
+    return render_template('index.html', navigation = items)
 
 @app.route("/<name>")
 def name(name):
@@ -64,7 +68,7 @@ def profile(username):
     return f'{username}\'s profile'
 
 with app.test_request_context():
-    print(url_for('index'))
+    #print(url_for('index'))
     print(url_for('login'))
     print(url_for('login', next='/'))
     print(url_for('profile', username='John Doe'))
