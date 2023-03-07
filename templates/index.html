@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Webpage</title>
+    <title>Koby's Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <h1>My Webpage</h1>
     <ul id="navigation">
     {% for item in navigation %}

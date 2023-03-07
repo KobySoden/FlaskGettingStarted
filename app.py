@@ -8,7 +8,6 @@ from markupsafe import escape
 app = Flask(__name__)
 app.run(debug=True) #debug mode
 
-
 def setup():
     url_for('static', filename='style.css')
 
